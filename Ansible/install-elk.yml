@@ -1,0 +1,52 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 ---\
+- name: Elk Installation playbook\
+  hosts: elk\
+  remote_user: sysadmin\
+  become: true\
+  tasks:\
+\
+    - ansible.posix.sysctl:\
+        name: vm.max_map_count\
+        value: 262144\
+        state: present\
+        sysctl_file: /etc/sysctl.conf\
+\
+    - name: docker.io\
+      apt:\
+        update_cache: yes\
+        force_apt_get: yes\
+        name: docker.io\
+        state: present\
+\
+    - name: pip3\
+      apt:\
+        name: python3-pip\
+        state: present\
+\
+    - name: install docker pip module\
+      pip:\
+        name: docker\
+        state: present\
+\
+    - name: Install Elk\
+      docker_container:\
+        name: elk\
+        image: sebp/elk:761\
+        state: started\
+        restart_policy: always\
+        ports:\
+          - "5601:5601"\
+          - "9200:9200"\
+          - "5044:5044"\
+\
+    - name: Enable docker service is started\
+      systemd:\
+        name: docker\
+        enabled: yes}
