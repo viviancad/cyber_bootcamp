@@ -337,14 +337,30 @@ The specific commands are required to run the playbooks and navigate trough Kiba
     - root@0851ac406ceb:/etc/ansible# ansible-playbook metricbeat-playbook.yml
   
   7. Once the playbooks have been launched and no errors are triggered, navigate to Kibana to check that the installation worked as expected.
+  
   Now, Filebeat and Metricbeat data and reports can be seen at Kibana.
-    - Kibana can be accessed at `http://<elk-server-ip>:5601/app/kibana`
-    - After Kibana has been configured, Filebeat and Metricbeat data will appear for the first time similar to the following images: 
+   
+   - Kibana can be accessed at `http://<elk-server-ip>:5601/app/kibana`
     
+   - After Kibana has been configured, Filebeat and Metricbeat data will appear for the first time similar to the following images: 
+    
+   ##### Filebeat
+   
    ![](Images/Kibana1.png)
+   
+   ##### Metricbeat
+   
    ![](Images/Kibana2.png)
     
+   
+   
+   The following is an example of the logs captured by Kibana, when a high amount of failed SSH login attempts where generated on one of the VM Web servers:
+   
+   ![](Images/Failed_login_attempts.png)
+   
+   
+ ####  Kibana
     
- #### Exploring Kibana
-    
-In order to use the playbook
+Kibana offers different features. The main feaures used during this implementation were `Metrics` and `Logs`. However, Kibana also creates Charts, Dashboards, Maps to identify what country the network traffic is coming from, SIEM solution, application monitoring, among others. Kibana permits to obtain valuable information to conduct analysis and investigation over different IT company assets. It also permits adding sample data, for example from a Web Server to visualize and interact with the different features and data. 
+
+
