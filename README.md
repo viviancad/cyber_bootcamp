@@ -339,3 +339,12 @@ The specific commands are required to run the playbooks and navigate trough Kiba
   7. Once the playbooks have been launched and no errors are triggered, navigate to Kibana to check that the installation worked as expected.
   Now, Filebeat and Metricbeat data and reports can be seen at Kibana.
     - Kibana can be accessed at `http://<elk-server-ip>:5601/app/kibana`
+    - After Kibana has been configured, Filebeat and Metricbeat data will appear for the first time similar to the following images: 
+    
+   ![](Images/Kibana1.png)
+   ![](Images/Kibana2.png)
+    
+    
+ #### Exploring Kibana
+    
+In order to use the playbook
